@@ -50,13 +50,13 @@
 
 <form id="contactForm">
     <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required>
+    <input type="text" id="nombre" name="nombre">
 
     <label for="correo">Correo electrónico:</label>
-    <input type="email" id="correo" name="correo" required>
+    <input type="email" id="correo" name="correo">
 
     <label for="mensaje">Mensaje:</label>
-    <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+    <textarea id="mensaje" name="mensaje" rows="4"></textarea>
 
     <input type="submit" value="Enviar">
 </form>
@@ -84,7 +84,9 @@
         if (mensaje) document.getElementById('mensaje').value = mensaje;
 
         if (submit === 'true') {
-            document.getElementById('contactForm').submit();
+            setTimeout(function() {
+                document.getElementById('contactForm').submit();
+            }, 1000); // Retraso de 1 segundo antes de enviar el formulario
         }
     });
 

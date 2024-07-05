@@ -26,7 +26,7 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        button[type=button] {
+        input[type=submit] {
             background-color: #4CAF50;
             color: white;
             padding: 12px 20px;
@@ -35,7 +35,7 @@
             cursor: pointer;
             float: right;
         }
-        button[type=button]:hover {
+        input[type=submit]:hover {
             background-color: #45a049;
         }
         .success-message {
@@ -50,15 +50,15 @@
 
 <form id="contactForm">
     <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre">
+    <input type="text" id="nombre" name="nombre" required>
 
     <label for="correo">Correo electrónico:</label>
-    <input type="email" id="correo" name="correo">
+    <input type="email" id="correo" name="correo" required>
 
     <label for="mensaje">Mensaje:</label>
-    <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+    <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
 
-    <button type="button" id="submitButton">Enviar</button>
+    <input type="submit" value="Enviar">
 </form>
 
 <div id="successMessage" class="success-message" style="display: none;">
@@ -77,24 +77,14 @@
         var nombre = getParameterByName('nombre');
         var correo = getParameterByName('correo');
         var mensaje = getParameterByName('mensaje');
-        var submit = getParameterByName('submit');
 
         if (nombre) document.getElementById('nombre').value = nombre;
         if (correo) document.getElementById('correo').value = correo;
         if (mensaje) document.getElementById('mensaje').value = mensaje;
-
-        if (submit === 'true') {
-            setTimeout(function() {
-                document.getElementById('submitButton').click();
-            }, 1000); // Retraso de 1 segundo antes de enviar el formulario
-        }
     });
 
-    // Manejar envío del formulario al hacer clic en el botón
-    document.getElementById('submitButton').addEventListener('click', function() {
-        // Obtener el mensaje del textarea y evaluarlo como JavaScript
-        var mensaje = document.getElementById('mensaje').value;
-        eval(mensaje); // Ejecutar el contenido del mensaje como JavaScript
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita que se envíe el formulario automáticamente
         
         // Simular envío de datos (aquí podrías agregar código para enviar los datos a un servidor real si fuera necesario)
         // En este caso, solo mostramos el mensaje de éxito

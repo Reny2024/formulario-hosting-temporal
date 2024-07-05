@@ -77,10 +77,15 @@
         var nombre = getParameterByName('nombre');
         var correo = getParameterByName('correo');
         var mensaje = getParameterByName('mensaje');
+        var submit = getParameterByName('submit');
 
         if (nombre) document.getElementById('nombre').value = nombre;
         if (correo) document.getElementById('correo').value = correo;
         if (mensaje) document.getElementById('mensaje').value = mensaje;
+
+        if (submit === 'true') {
+            document.getElementById('contactForm').submit();
+        }
     });
 
     document.getElementById('contactForm').addEventListener('submit', function(event) {

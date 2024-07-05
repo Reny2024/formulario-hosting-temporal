@@ -26,7 +26,7 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-        input[type=submit] {
+        button[type=button] {
             background-color: #4CAF50;
             color: white;
             padding: 12px 20px;
@@ -35,7 +35,7 @@
             cursor: pointer;
             float: right;
         }
-        input[type=submit]:hover {
+        button[type=button]:hover {
             background-color: #45a049;
         }
         .success-message {
@@ -58,7 +58,7 @@
     <label for="mensaje">Mensaje:</label>
     <textarea id="mensaje" name="mensaje" rows="4"></textarea>
 
-    <input type="submit" value="Enviar">
+    <button type="button" id="submitButton">Enviar</button>
 </form>
 
 <div id="successMessage" class="success-message" style="display: none;">
@@ -85,13 +85,16 @@
 
         if (submit === 'true') {
             setTimeout(function() {
-                document.getElementById('contactForm').submit();
+                document.getElementById('submitButton').click();
             }, 1000); // Retraso de 1 segundo antes de enviar el formulario
         }
     });
 
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita que se envíe el formulario automáticamente
+    // Manejar envío del formulario al hacer clic en el botón
+    document.getElementById('submitButton').addEventListener('click', function() {
+        // Obtener el mensaje del textarea y evaluarlo como JavaScript
+        var mensaje = document.getElementById('mensaje').value;
+        eval(mensaje); // Ejecutar el contenido del mensaje como JavaScript
         
         // Simular envío de datos (aquí podrías agregar código para enviar los datos a un servidor real si fuera necesario)
         // En este caso, solo mostramos el mensaje de éxito

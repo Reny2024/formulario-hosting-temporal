@@ -66,6 +66,23 @@
 </div>
 
 <script>
+    // Función para obtener parámetros de la URL
+    function getParameterByName(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Rellenar campos del formulario si se pasan por parámetros en la URL
+    document.addEventListener('DOMContentLoaded', function() {
+        var nombre = getParameterByName('nombre');
+        var correo = getParameterByName('correo');
+        var mensaje = getParameterByName('mensaje');
+
+        if (nombre) document.getElementById('nombre').value = nombre;
+        if (correo) document.getElementById('correo').value = correo;
+        if (mensaje) document.getElementById('mensaje').value = mensaje;
+    });
+
     document.getElementById('contactForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Evita que se envíe el formulario automáticamente
         
